@@ -84,7 +84,6 @@ def choose_text():
         print(f'{part_chose} is not correct answer, repeat you choice') #pri spatnem zadani opakuje volbu
         return choose_text()
 
-#login()
 chosen_text = login()  # uložení vybraného textu po přihlášení a výběru textu
 
 #promenne dat v grafu
