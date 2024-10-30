@@ -3,6 +3,11 @@ author ='''
 projekt_1.py: první projekt do Engeto Online Python Akademie
 Martin Blahuš
 martinkuf@gmail.com
+
+patch notes v1.2:
+#odstraneno spoustu for cyklu, prejmenovane promenne
+#vycisteni textu od interpunkce, to byl duvod spatneho pocitani slov, pri slicingu podle ' ' + predelane prikazy na pocitani textu
+#zkraceni zapisu delek promennych a jejich prevedeni na hvezdy do grafu
 '''
 import string
 
@@ -114,17 +119,12 @@ for word in chosen_text:
 #soucet cisel        
 suma_sumarum = sum(pocet_cisel)
 
-pocet_slov = len(pocet_slov)
-prvni_velke = len(prvni_velke)
-cele_velke = len(cele_velke)
-cele_male = len(cele_male)
-pocet_cisel = len(pocet_cisel)
+pocet_slov, hvezdy_pocet = len(pocet_slov), len(pocet_slov) * '*'
+prvni_velke, hvezdy_velke = len(prvni_velke), len(prvni_velke) * '*'
+cele_velke, hvezdy_VELKE = len(cele_velke), len(cele_velke) * '*'
+cele_male, hvezdy_male = len(cele_male), len(cele_male) * '*'
+pocet_cisel, hvezdy_cisla = len(pocet_cisel), len(pocet_cisel) * '*'
 
-hvezdy_pocet = pocet_slov * '*'
-hvezdy_velke = prvni_velke * '*'
-hvezdy_VELKE = cele_velke * '*'
-hvezdy_male = cele_male * '*'
-hvezdy_cisla = pocet_cisel * '*'
 
 print(f'''
 {cara}
