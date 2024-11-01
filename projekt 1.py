@@ -8,6 +8,9 @@ patch notes v1.2:
 #odstraneno spoustu for cyklu, prejmenovane promenne
 #vycisteni textu od interpunkce, to byl duvod spatneho pocitani slov, pri slicingu podle ' ' + predelane prikazy na pocitani textu
 #zkraceni zapisu delek promennych a jejich prevedeni na hvezdy do grafu
+patch notes v1.3:
+
+
 '''
 import string
 
@@ -40,14 +43,6 @@ garpike and stingray are also present.'''
 ]
 
 #prevedeni textu na casti a vycisteni textu od interpunkce
-part_1 = TEXTS[0]
-part_1 = [slovo.strip(string.punctuation) for slovo in TEXTS[0].split()]
-
-part_2 = TEXTS[1]
-part_2 = [slovo.strip(string.punctuation) for slovo in TEXTS[1].split()]
-
-part_3 = TEXTS[2]
-part_3 = [slovo.strip(string.punctuation) for slovo in TEXTS[2].split()]
 
 cara = 40 * '-'
 users = {
@@ -71,24 +66,21 @@ def login():
         print('Wrong password')
         return login()
 
+
 chosen_text = '' #prazdny list do ktereho pridam vyber uzivatele pro dalsi praci s textem
 
 #vyber textu a vypsani jeho casti
 def choose_text():
-    print('We have 3 texts to be analyzed.')
+    print(f'We have {len(TEXTS)} texts to be analyzed.')
     part_chose = input('Enter a number from 1 to 3 to choose a text \n')
-    #print(cara)
-
-    if part_chose == '1':
-        return part_1
-    elif part_chose == '2':
-        return part_2
-    elif part_chose == '3':
-        return part_3
+    if part_chose.isdigit() and 1 <= int(part_chose) <= len(TEXTS):
+        part = TEXTS[int(part_chose) - 1]
+        part = [slovo.strip(string.punctuation) for slovo in part.split()]
+        return part
     else:
-        print(f'{part_chose} is not correct answer, repeat you choice') #pri spatnem zadani opakuje volbu
-        return choose_text()
-
+        print(f'{part_chose} is not correct answer, choose number between 1 and {len(TEXTS)}')
+        return choose_text()  
+    
 chosen_text = login()  # uložení vybraného textu po přihlášení a výběru textu
 
 #promenne dat v grafu
@@ -119,11 +111,11 @@ for word in chosen_text:
 #soucet cisel        
 suma_sumarum = sum(pocet_cisel)
 
-pocet_slov, hvezdy_pocet = len(pocet_slov), len(pocet_slov) * '*'
-prvni_velke, hvezdy_velke = len(prvni_velke), len(prvni_velke) * '*'
-cele_velke, hvezdy_VELKE = len(cele_velke), len(cele_velke) * '*'
-cele_male, hvezdy_male = len(cele_male), len(cele_male) * '*'
-pocet_cisel, hvezdy_cisla = len(pocet_cisel), len(pocet_cisel) * '*'
+pocet_slov = len(pocet_slov)
+prvni_velke = len(prvni_velke)
+cele_velke = len(cele_velke)
+cele_male = len(cele_male)
+pocet_cisel = len(pocet_cisel)
 
 
 print(f'''
@@ -135,7 +127,14 @@ print(f'''
 5. There are {pocet_cisel} numeric strings.
 The sum of all the numbers {suma_sumarum}.
 {cara}
-NR.|  OCCURENCES  |LEN
+''')
+
+for word in chosen_text:
+    word = len(word)
+    word_star = word * '*'
+
+
+LEN|  OCCURENCES  |NR.
 {cara}
   1|{hvezdy_pocet}|{pocet_slov}     
   2|{hvezdy_velke}|{prvni_velke}
